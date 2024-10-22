@@ -9,6 +9,7 @@ import Blogcreate from "./Screens/BlogCreate/Blogcreate";
 import BlogContextProvider from "./context/BlogContext";
 import { BlogContext } from "./context/BlogContext";
 import Layout from "./Screens/layout/layout";
+import Profile from "./Screens/Profile/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,10 @@ function App() {
        {
         path: "/",
         element: <Bloglist />,
+       },
+       {
+        path: "/profile",
+        element: <Profile />,
        }
       ],
     },

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { firestore } from '../../config/firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import { useNavigate } from 'react-router-dom';
 
 function Blogcreate() {
+  const navigate = useNavigate();
   const blogCollectionRef = collection(firestore, 'blogs');
 
   const [blog, setBlog] = useState({
@@ -22,7 +26,12 @@ function Blogcreate() {
     e.preventDefault(); // Prevent form from refreshing the page
 
     if (blog.title.trim() === '' || blog.body.trim() === '') {
-      console.log('Title or body cannot be empty');
+      toast.error('Title or body cannot be empty')
+       // Show error toast
+      return;
+    } else if (blog.body.length < 40) {
+      toast.error('Body must be at least 40 characters long')
+       // Show error toast
       return;
     }
 
@@ -30,15 +39,21 @@ function Blogcreate() {
     try {
       await addDoc(blogCollectionRef, blog);
       console.log('Blog added:', blog);
+      toast.success('Blog created successfully! redirecting to homepage'); // Show success toast
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
       // Reset the form fields after submission
       setBlog({ title: '', body: '' });
     } catch (error) {
       console.log(error);
+      toast.error('An error occurred while creating the blog. Please try again later.'); // Show error toast
     }
   };
 
   return (
     <div className="container mx-auto px-6 py-10">
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick draggable pauseOnHover />
       <h1 className="text-3xl font-bold text-blue-600 mb-6">Create a New Blog</h1>
 
       {/* Attach the submit handler */}
