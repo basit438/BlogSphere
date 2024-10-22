@@ -23,7 +23,7 @@ function Blogcreate() {
   const onFormSubmit = async (e) => {
     e.preventDefault(); // Prevent form from refreshing the page
 
-    // Make sure title and body are not empty before adding to Firestore
+   
     if (blog.title.trim() === "" || blog.body.trim() === "") {
       console.log("Title or body cannot be empty");
       return;
@@ -35,10 +35,6 @@ function Blogcreate() {
       console.log("Blog added:", blog);
       
       // Reset the form fields after submission
-      setBlog({
-        title: "",
-        body: ""
-      });
     } catch (error) {
       console.log(error);
     }

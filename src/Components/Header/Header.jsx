@@ -14,7 +14,7 @@ function Header() {
    return (
       <>
          <div>
-            <h1>BlogSphere</h1>
+            <h1 className='text-3xl'>BlogSphere</h1>
          </div>
          <ul>
             <li>
