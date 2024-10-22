@@ -8,8 +8,7 @@ import Bloglist from "./Screens/BlogList/Bloglist";
 import Blogcreate from "./Screens/BlogCreate/Blogcreate";
 import BlogContextProvider from "./context/BlogContext";
 import { BlogContext } from "./context/BlogContext";
-import Layout from "./Screens/layout/layout";
-import Profile from "./Screens/Profile/Profile";
+import Layout from "./Screens/layout/Layout";
 
 function App() {
   const router = createBrowserRouter([
